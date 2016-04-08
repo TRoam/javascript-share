@@ -1,13 +1,13 @@
 #Q3 - JavaScript 中的this
-```javascript 
+```javascript
 function Foo() {
-    getName = function () { alert (1); };
+    getName = function () { console.log (1); };
     return this;
 }
-Foo.getName = function () { alert (2);};
-Foo.prototype.getName = function () { alert (3);};
-var getName = function () { alert (4);};
-function getName() { alert (5);}
+Foo.getName = function () { console.log (2);};
+Foo.prototype.getName = function () { console.log (3);};
+var getName = function () { console.log (4);};
+function getName() { console.log (5);}
 
 
 Foo.getName();//2
@@ -31,7 +31,7 @@ new new Foo().getName();//3
 ```javascript
 function test(){
 　　　　this.x = 1;
-　　　　alert(this.x);
+　　　　console.log(this.x);
 　　}
 　　test(); // 1
 
@@ -39,7 +39,7 @@ OR
 
 var x = 1;
 　　function test(){
-　　　　alert(this.x);
+　　　　console.log(this.x);
 　　}
 　　test(); // 1
 
@@ -50,7 +50,7 @@ var x = 1;
 　　　　this.x = 0;
 　　}
 　　test();
-　　alert(x); //0
+　　console.log(x); //0
 ```
 
 ### 对象的成员方法
@@ -58,7 +58,7 @@ var x = 1;
 
 ```javascript
 function test(){
-　　　　alert(this.x);
+　　　　console.log(this.x);
 }
 　　var o = {};
 　　o.x = 1;
@@ -75,7 +75,7 @@ function test(){
 　　　　this.x = 1;
 　　}
 　　var o = new test();
-　　alert(o.x); // 1
+　　console.log(o.x); // 1
 
 等价于
 
@@ -84,7 +84,7 @@ var x = 2;
 　　　　this.x = 1;
  }
 var o = new test();
-alert(x); //2
+console.log(x); //2
 ```
 
 ### apply 调用
@@ -94,7 +94,7 @@ apply()是函数对象的一个方法，它的作用是改变函数的调用对�
 ```javascript
    var x = 0;
 　　function test(){
-　　　　alert(this.x);
+　　　　console.log(this.x);
 　　}
 　　var o={};
 　　o.x = 1;

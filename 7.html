@@ -725,13 +725,13 @@ pre {
 <a id="user-content-6-构造函数返回值" class="anchor" href="#6-%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E8%BF%94%E5%9B%9E%E5%80%BC" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>6-构造函数返回值</h1>
 
 <div class="highlight highlight-source-js"><pre><span class="pl-k">function</span> <span class="pl-en">Foo</span>() {
-    <span class="pl-en">getName</span> <span class="pl-k">=</span> <span class="pl-k">function</span> () { <span class="pl-en">alert</span> (<span class="pl-c1">1</span>); };
+    <span class="pl-en">getName</span> <span class="pl-k">=</span> <span class="pl-k">function</span> () { <span class="pl-en">console.log</span> (<span class="pl-c1">1</span>); };
     <span class="pl-k">return</span> <span class="pl-v">this</span>;
 }
-<span class="pl-smi">Foo</span>.<span class="pl-en">getName</span> <span class="pl-k">=</span> <span class="pl-k">function</span> () { <span class="pl-en">alert</span> (<span class="pl-c1">2</span>);};
-<span class="pl-smi">Foo</span>.<span class="pl-c1">prototype</span>.<span class="pl-en">getName</span> <span class="pl-k">=</span> <span class="pl-k">function</span> () { <span class="pl-en">alert</span> (<span class="pl-c1">3</span>);};
-<span class="pl-k">var</span> <span class="pl-en">getName</span> <span class="pl-k">=</span> <span class="pl-k">function</span> () { <span class="pl-en">alert</span> (<span class="pl-c1">4</span>);};
-<span class="pl-k">function</span> <span class="pl-en">getName</span>() { <span class="pl-en">alert</span> (<span class="pl-c1">5</span>);}
+<span class="pl-smi">Foo</span>.<span class="pl-en">getName</span> <span class="pl-k">=</span> <span class="pl-k">function</span> () { <span class="pl-en">console.log</span> (<span class="pl-c1">2</span>);};
+<span class="pl-smi">Foo</span>.<span class="pl-c1">prototype</span>.<span class="pl-en">getName</span> <span class="pl-k">=</span> <span class="pl-k">function</span> () { <span class="pl-en">console.log</span> (<span class="pl-c1">3</span>);};
+<span class="pl-k">var</span> <span class="pl-en">getName</span> <span class="pl-k">=</span> <span class="pl-k">function</span> () { <span class="pl-en">console.log</span> (<span class="pl-c1">4</span>);};
+<span class="pl-k">function</span> <span class="pl-en">getName</span>() { <span class="pl-en">console.log</span> (<span class="pl-c1">5</span>);}
 
 
 <span class="pl-smi">Foo</span>.<span class="pl-en">getName</span>();<span class="pl-c">//2</span>

@@ -1,14 +1,14 @@
-#问题二： 
+#问题二：
 
-```javascript 
+```javascript
 function Foo() {
-    getName = function () { alert (1); };
+    getName = function () { console.log (1); };
     return this;
 }
-Foo.getName = function () { alert (2);};
-Foo.prototype.getName = function () { alert (3);};
-var getName = function () { alert (4);};
-function getName() { alert (5);}
+Foo.getName = function () { console.log (2);};
+Foo.prototype.getName = function () { console.log (3);};
+var getName = function () { console.log (4);};
+function getName() { console.log (5);}
 
 
 Foo.getName();//2
@@ -24,15 +24,15 @@ new new Foo().getName();//3
 
 ```javascript
 function Foo() {
-    getName = function () { alert (1); };
+    getName = function () { console.log (1); };
     return this;
 }
 var getName;//只提升变量声明
-function getName() { alert (5);}//提升函数声明，覆盖var的声明
+function getName() { console.log (5);}//提升函数声明，覆盖var的声明
 
-Foo.getName = function () { alert (2);};
-Foo.prototype.getName = function () { alert (3);};
-getName = function () { alert (4);};//最终的赋值再次覆盖function getName声明
+Foo.getName = function () { console.log (2);};
+Foo.prototype.getName = function () { console.log (3);};
+getName = function () { console.log (4);};//最终的赋值再次覆盖function getName声明
 
 getName();//最终输出4
 ```

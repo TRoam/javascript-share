@@ -725,13 +725,13 @@ pre {
 <a id="user-content-q3---javascript-中的this" class="anchor" href="#q3---javascript-%E4%B8%AD%E7%9A%84this" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Q3 - JavaScript 中的this</h1>
 
 <div class="highlight highlight-source-js"><pre><span class="pl-k">function</span> <span class="pl-en">Foo</span>() {
-    <span class="pl-en">getName</span> <span class="pl-k">=</span> <span class="pl-k">function</span> () { <span class="pl-en">alert</span> (<span class="pl-c1">1</span>); };
+    <span class="pl-en">getName</span> <span class="pl-k">=</span> <span class="pl-k">function</span> () { <span class="pl-en">console.log</span> (<span class="pl-c1">1</span>); };
     <span class="pl-k">return</span> <span class="pl-v">this</span>;
 }
-<span class="pl-smi">Foo</span>.<span class="pl-en">getName</span> <span class="pl-k">=</span> <span class="pl-k">function</span> () { <span class="pl-en">alert</span> (<span class="pl-c1">2</span>);};
-<span class="pl-smi">Foo</span>.<span class="pl-c1">prototype</span>.<span class="pl-en">getName</span> <span class="pl-k">=</span> <span class="pl-k">function</span> () { <span class="pl-en">alert</span> (<span class="pl-c1">3</span>);};
-<span class="pl-k">var</span> <span class="pl-en">getName</span> <span class="pl-k">=</span> <span class="pl-k">function</span> () { <span class="pl-en">alert</span> (<span class="pl-c1">4</span>);};
-<span class="pl-k">function</span> <span class="pl-en">getName</span>() { <span class="pl-en">alert</span> (<span class="pl-c1">5</span>);}
+<span class="pl-smi">Foo</span>.<span class="pl-en">getName</span> <span class="pl-k">=</span> <span class="pl-k">function</span> () { <span class="pl-en">console.log</span> (<span class="pl-c1">2</span>);};
+<span class="pl-smi">Foo</span>.<span class="pl-c1">prototype</span>.<span class="pl-en">getName</span> <span class="pl-k">=</span> <span class="pl-k">function</span> () { <span class="pl-en">console.log</span> (<span class="pl-c1">3</span>);};
+<span class="pl-k">var</span> <span class="pl-en">getName</span> <span class="pl-k">=</span> <span class="pl-k">function</span> () { <span class="pl-en">console.log</span> (<span class="pl-c1">4</span>);};
+<span class="pl-k">function</span> <span class="pl-en">getName</span>() { <span class="pl-en">console.log</span> (<span class="pl-c1">5</span>);}
 
 
 <span class="pl-smi">Foo</span>.<span class="pl-en">getName</span>();<span class="pl-c">//2</span>
@@ -760,7 +760,7 @@ pre {
 
 <div class="highlight highlight-source-js"><pre><span class="pl-k">function</span> <span class="pl-en">test</span>(){
 　　　　<span class="pl-v">this</span>.<span class="pl-c1">x</span> <span class="pl-k">=</span> <span class="pl-c1">1</span>;
-　　　　<span class="pl-en">alert</span>(<span class="pl-v">this</span>.<span class="pl-c1">x</span>);
+　　　　<span class="pl-en">console.log</span>(<span class="pl-v">this</span>.<span class="pl-c1">x</span>);
 　　}
 　　<span class="pl-en">test</span>(); <span class="pl-c">// 1</span>
 
@@ -768,7 +768,7 @@ pre {
 
 <span class="pl-k">var</span> x <span class="pl-k">=</span> <span class="pl-c1">1</span>;
 　　<span class="pl-k">function</span> <span class="pl-en">test</span>(){
-　　　　<span class="pl-en">alert</span>(<span class="pl-v">this</span>.<span class="pl-c1">x</span>);
+　　　　<span class="pl-en">console.log</span>(<span class="pl-v">this</span>.<span class="pl-c1">x</span>);
 　　}
 　　<span class="pl-en">test</span>(); <span class="pl-c">// 1</span>
 
@@ -779,7 +779,7 @@ pre {
 　　　　<span class="pl-v">this</span>.<span class="pl-c1">x</span> <span class="pl-k">=</span> <span class="pl-c1">0</span>;
 　　}
 　　<span class="pl-en">test</span>();
-　　<span class="pl-en">alert</span>(x); <span class="pl-c">//0</span></pre></div>
+　　<span class="pl-en">console.log</span>(x); <span class="pl-c">//0</span></pre></div>
 
 <h3>
 <a id="user-content-对象的成员方法" class="anchor" href="#%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%88%90%E5%91%98%E6%96%B9%E6%B3%95" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>对象的成员方法</h3>
@@ -787,7 +787,7 @@ pre {
 <p>函数还可以作为某个对象的方法调用，这时this就指这个上级对象。</p>
 
 <div class="highlight highlight-source-js"><pre><span class="pl-k">function</span> <span class="pl-en">test</span>(){
-　　　　<span class="pl-en">alert</span>(<span class="pl-v">this</span>.<span class="pl-c1">x</span>);
+　　　　<span class="pl-en">console.log</span>(<span class="pl-v">this</span>.<span class="pl-c1">x</span>);
 }
 　　<span class="pl-k">var</span> o <span class="pl-k">=</span> {};
 　　<span class="pl-smi">o</span>.<span class="pl-c1">x</span> <span class="pl-k">=</span> <span class="pl-c1">1</span>;
@@ -803,7 +803,7 @@ pre {
 　　　　<span class="pl-v">this</span>.<span class="pl-c1">x</span> <span class="pl-k">=</span> <span class="pl-c1">1</span>;
 　　}
 　　<span class="pl-k">var</span> o <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">test</span>();
-　　<span class="pl-en">alert</span>(<span class="pl-smi">o</span>.<span class="pl-c1">x</span>); <span class="pl-c">// 1</span>
+　　<span class="pl-en">console.log</span>(<span class="pl-smi">o</span>.<span class="pl-c1">x</span>); <span class="pl-c">// 1</span>
 
 等价于
 
@@ -812,7 +812,7 @@ pre {
 　　　　<span class="pl-v">this</span>.<span class="pl-c1">x</span> <span class="pl-k">=</span> <span class="pl-c1">1</span>;
  }
 <span class="pl-k">var</span> o <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">test</span>();
-<span class="pl-en">alert</span>(x); <span class="pl-c">//2</span></pre></div>
+<span class="pl-en">console.log</span>(x); <span class="pl-c">//2</span></pre></div>
 
 <h3>
 <a id="user-content-apply-调用" class="anchor" href="#apply-%E8%B0%83%E7%94%A8" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>apply 调用</h3>
@@ -822,7 +822,7 @@ pre {
 
 <div class="highlight highlight-source-js"><pre>   <span class="pl-k">var</span> x <span class="pl-k">=</span> <span class="pl-c1">0</span>;
 　　<span class="pl-k">function</span> <span class="pl-en">test</span>(){
-　　　　<span class="pl-en">alert</span>(<span class="pl-v">this</span>.<span class="pl-c1">x</span>);
+　　　　<span class="pl-en">console.log</span>(<span class="pl-v">this</span>.<span class="pl-c1">x</span>);
 　　}
 　　<span class="pl-k">var</span> o<span class="pl-k">=</span>{};
 　　<span class="pl-smi">o</span>.<span class="pl-c1">x</span> <span class="pl-k">=</span> <span class="pl-c1">1</span>;

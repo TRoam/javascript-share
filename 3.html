@@ -740,7 +740,7 @@ pre {
     <span class="pl-k">function</span> <span class="pl-en">a</span>() {}
 }
 <span class="pl-en">b</span>();
-<span class="pl-en">alert</span>(a);</pre></div>
+<span class="pl-en">console.log</span>(a);</pre></div>
 
 <div class="highlight highlight-source-c"><pre>#<span class="pl-k">include</span> <span class="pl-s"><span class="pl-pds">&lt;</span>stdio.h<span class="pl-pds">&gt;</span></span>
 <span class="pl-k">int</span> <span class="pl-en">main</span>() {
@@ -831,10 +831,10 @@ pre {
     <span class="pl-en">foo</span>(); <span class="pl-c">// TypeError "foo is not a function" </span>
     <span class="pl-en">bar</span>(); <span class="pl-c">// "this will run!" </span>
     <span class="pl-k">var</span> <span class="pl-en">foo</span> <span class="pl-k">=</span> <span class="pl-k">function</span> () { <span class="pl-c">// function expression assigned to local variable 'foo' </span>
-        <span class="pl-en">alert</span>(<span class="pl-s"><span class="pl-pds">"</span>this won't run!<span class="pl-pds">"</span></span>);
+        <span class="pl-en">console.log</span>(<span class="pl-s"><span class="pl-pds">"</span>this won't run!<span class="pl-pds">"</span></span>);
     }
     <span class="pl-k">function</span> <span class="pl-en">bar</span>() { <span class="pl-c">// function declaration, given the name 'bar' </span>
-        <span class="pl-en">alert</span>(<span class="pl-s"><span class="pl-pds">"</span>this will run!<span class="pl-pds">"</span></span>);
+        <span class="pl-en">console.log</span>(<span class="pl-s"><span class="pl-pds">"</span>this will run!<span class="pl-pds">"</span></span>);
     }
 }
 <span class="pl-en">test</span>();</pre></div>

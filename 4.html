@@ -725,13 +725,13 @@ pre {
 <a id="user-content-问题二" class="anchor" href="#%E9%97%AE%E9%A2%98%E4%BA%8C" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>问题二：</h1>
 
 <div class="highlight highlight-source-js"><pre><span class="pl-k">function</span> <span class="pl-en">Foo</span>() {
-    <span class="pl-en">getName</span> <span class="pl-k">=</span> <span class="pl-k">function</span> () { <span class="pl-en">alert</span> (<span class="pl-c1">1</span>); };
+    <span class="pl-en">getName</span> <span class="pl-k">=</span> <span class="pl-k">function</span> () { <span class="pl-en">console.log</span> (<span class="pl-c1">1</span>); };
     <span class="pl-k">return</span> <span class="pl-v">this</span>;
 }
-<span class="pl-smi">Foo</span>.<span class="pl-en">getName</span> <span class="pl-k">=</span> <span class="pl-k">function</span> () { <span class="pl-en">alert</span> (<span class="pl-c1">2</span>);};
-<span class="pl-smi">Foo</span>.<span class="pl-c1">prototype</span>.<span class="pl-en">getName</span> <span class="pl-k">=</span> <span class="pl-k">function</span> () { <span class="pl-en">alert</span> (<span class="pl-c1">3</span>);};
-<span class="pl-k">var</span> <span class="pl-en">getName</span> <span class="pl-k">=</span> <span class="pl-k">function</span> () { <span class="pl-en">alert</span> (<span class="pl-c1">4</span>);};
-<span class="pl-k">function</span> <span class="pl-en">getName</span>() { <span class="pl-en">alert</span> (<span class="pl-c1">5</span>);}
+<span class="pl-smi">Foo</span>.<span class="pl-en">getName</span> <span class="pl-k">=</span> <span class="pl-k">function</span> () { <span class="pl-en">console.log</span> (<span class="pl-c1">2</span>);};
+<span class="pl-smi">Foo</span>.<span class="pl-c1">prototype</span>.<span class="pl-en">getName</span> <span class="pl-k">=</span> <span class="pl-k">function</span> () { <span class="pl-en">console.log</span> (<span class="pl-c1">3</span>);};
+<span class="pl-k">var</span> <span class="pl-en">getName</span> <span class="pl-k">=</span> <span class="pl-k">function</span> () { <span class="pl-en">console.log</span> (<span class="pl-c1">4</span>);};
+<span class="pl-k">function</span> <span class="pl-en">getName</span>() { <span class="pl-en">console.log</span> (<span class="pl-c1">5</span>);}
 
 
 <span class="pl-smi">Foo</span>.<span class="pl-en">getName</span>();<span class="pl-c">//2</span>
@@ -743,15 +743,15 @@ pre {
 <span class="pl-k">new</span> <span class="pl-en">new</span> <span class="pl-en">Foo</span>().<span class="pl-en">getName</span>();<span class="pl-c">//3</span></pre></div>
 
 <div class="highlight highlight-source-js"><pre><span class="pl-k">function</span> <span class="pl-en">Foo</span>() {
-    <span class="pl-en">getName</span> <span class="pl-k">=</span> <span class="pl-k">function</span> () { <span class="pl-en">alert</span> (<span class="pl-c1">1</span>); };
+    <span class="pl-en">getName</span> <span class="pl-k">=</span> <span class="pl-k">function</span> () { <span class="pl-en">console.log</span> (<span class="pl-c1">1</span>); };
     <span class="pl-k">return</span> <span class="pl-v">this</span>;
 }
 <span class="pl-k">var</span> getName;<span class="pl-c">//只提升变量声明</span>
-<span class="pl-k">function</span> <span class="pl-en">getName</span>() { <span class="pl-en">alert</span> (<span class="pl-c1">5</span>);}<span class="pl-c">//提升函数声明，覆盖var的声明</span>
+<span class="pl-k">function</span> <span class="pl-en">getName</span>() { <span class="pl-en">console.log</span> (<span class="pl-c1">5</span>);}<span class="pl-c">//提升函数声明，覆盖var的声明</span>
 
-<span class="pl-smi">Foo</span>.<span class="pl-en">getName</span> <span class="pl-k">=</span> <span class="pl-k">function</span> () { <span class="pl-en">alert</span> (<span class="pl-c1">2</span>);};
-<span class="pl-smi">Foo</span>.<span class="pl-c1">prototype</span>.<span class="pl-en">getName</span> <span class="pl-k">=</span> <span class="pl-k">function</span> () { <span class="pl-en">alert</span> (<span class="pl-c1">3</span>);};
-<span class="pl-en">getName</span> <span class="pl-k">=</span> <span class="pl-k">function</span> () { <span class="pl-en">alert</span> (<span class="pl-c1">4</span>);};<span class="pl-c">//最终的赋值再次覆盖function getName声明</span>
+<span class="pl-smi">Foo</span>.<span class="pl-en">getName</span> <span class="pl-k">=</span> <span class="pl-k">function</span> () { <span class="pl-en">console.log</span> (<span class="pl-c1">2</span>);};
+<span class="pl-smi">Foo</span>.<span class="pl-c1">prototype</span>.<span class="pl-en">getName</span> <span class="pl-k">=</span> <span class="pl-k">function</span> () { <span class="pl-en">console.log</span> (<span class="pl-c1">3</span>);};
+<span class="pl-en">getName</span> <span class="pl-k">=</span> <span class="pl-k">function</span> () { <span class="pl-en">console.log</span> (<span class="pl-c1">4</span>);};<span class="pl-c">//最终的赋值再次覆盖function getName声明</span>
 
 <span class="pl-en">getName</span>();<span class="pl-c">//最终输出4</span></pre></div>
 </article>
