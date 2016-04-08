@@ -1,0 +1,30 @@
+#Q5.6-js的运算符优先级问题
+```javascript 
+function Foo() {
+    getName = function () { alert (1); };
+    return this;
+}
+Foo.getName = function () { alert (2);};
+Foo.prototype.getName = function () { alert (3);};
+var getName = function () { alert (4);};
+function getName() { alert (5);}
+
+
+Foo.getName();//2
+getName();//4
+Foo().getName();//1
+getName();//1
+new Foo.getName();//2
+new Foo().getName();//3
+new new Foo().getName();//3
+```
+
+js的运算符优先级问题
+
+点（.）的优先级高于new操作，遂相当于是:
+
+`new (Foo.getName)();`
+所以实际上将getName函数作为了构造函数来执行，遂弹出2。
+
+
+

@@ -1,0 +1,46 @@
+#6-构造函数返回值
+```javascript 
+function Foo() {
+    getName = function () { alert (1); };
+    return this;
+}
+Foo.getName = function () { alert (2);};
+Foo.prototype.getName = function () { alert (3);};
+var getName = function () { alert (4);};
+function getName() { alert (5);}
+
+
+Foo.getName();//2
+getName();//4
+Foo().getName();//1
+getName();//1
+new Foo.getName();//2
+new Foo().getName();//3
+new new Foo().getName();//3
+```
+
+
+`new Foo().getName()` ，首先看运算符优先级括号高于new，实际执行为
+
+`(new Foo()).getName()`
+遂先执行Foo函数，而Foo此时作为构造函数却有返回值，所以这里需要说明下js中的构造函数返回值问题。
+
+在传统语言中，构造函数不应该有返回值，实际执行的返回值就是此构造函数的实例化对象。
+而在js中构造函数可以有返回值也可以没有。
+
+1、没有返回值则按照其他语言一样返回实例化对象
+2.若有返回值则检查其返回值是否为引用类型。如果是非引用类型，如基本类型（string,number,boolean,null,undefined）则与无返回值相同，实际返回其实例化对象。
+3.若返回值是引用类型，则实际返回值为这个引用类型
+```javascript
+function F (){
+    return {a:1}
+}
+
+new F(); // {a:1}
+```
+
+原题中，返回的是this，而this在构造函数中本来就代表当前实例化对象，遂最终Foo函数返回实例化对象。
+
+之后调用实例化对象的getName函数，因为在Foo构造函数中没有为实例化对象添加任何属性，遂到当前对象的原型对象（prototype）中寻找getName，找到了。
+
+遂最终输出3

@@ -1,0 +1,156 @@
+#JavaScript Scoping and Hoisting(变量作用域和声明提升)
+
+```javascript
+var foo = 1; 
+function bar() { 
+    if (!foo) { 
+        var foo = 10; 
+    } 
+    console.log(foo); 
+} 
+bar();
+```
+
+
+```javascript
+var a = 1; 
+function b() { 
+    a = 10; 
+    return; 
+    function a() {} 
+} 
+b(); 
+alert(a);
+```
+
+```c
+#include <stdio.h> 
+int main() { 
+    int x = 1; 
+    printf("%d, ", x); // 1 
+    if (1) { 
+        int x = 2; 
+        printf("%d, ", x); // 2 
+    } 
+    printf("%d\n", x); // 1 
+}
+```
+程序输出结果是1, 2, 1。因为C风格的语言有块级作用域（block-level scope）。当函数鱼运行到 if 语句中时，当前作用域中的新变量会被声明，并且不会影响到外部作用域。但在JavaScript中情况并不是这样：
+
+```javascript
+var x = 1; 
+console.log(x); // 1 
+if (true) { 
+    var x = 2; 
+    console.log(x); // 2 
+} 
+console.log(x); // 2
+```
+
+程序输出结果1, 2, 2。原因是JavaScript支持函数作用域（function-level scope)。if 语句中的代码块并不会创建新的作用域，只有函数才会。
+
+如果你必须在函数中创建一个临时作用域，可以这么做：
+```javascript
+function foo() { 
+    var x = 1; 
+    if (x) { 
+        (function () { 
+            var x = 2; 
+            // some other code 
+        }()); 
+    } 
+    // x is still 1. 
+}
+```
+
+
+#Declarations, Names, and Hoisting（声明、名称以及变量声明提升/声明时机提升）
+
+###当访问函数内的变量时，JavaScript会按照下面顺序查找：
+  - 语言级别：默认在所用作用域下会定义this、arguments
+  - 传入参数：函数命名的参数，作用域是当前函数体
+  - 函数声明：例如function foo() {}
+  - 变量声明：例如var foo;
+
+函数声明与变量声明经常被JavaScript引擎隐式地提升到当前作用域的顶部，也就是说：
+```javascript
+function foo() { 
+    bar(); 
+    var x = 1; 
+}
+```
+实际上会被解释成：
+```javascript
+function foo() { 
+    var x; 
+    bar(); 
+    x = 1; 
+}
+```
+也就是说，下面两种声明方式是等价的：
+```javascript
+function foo() { 
+    if (false) { 
+        var x = 1; 
+    } 
+    return; 
+    var y = 1; 
+} 
+```
+```javascript
+function foo() { 
+    var x, y; 
+    if (false) { 
+        x = 1; 
+    } 
+    return; 
+    y = 1; 
+}
+```
+可以发现，声明语句中的赋值部分并没有被提升声明，只有名称被提升了。两种函数声明方式：
+
+```javascript
+function test() { 
+    foo(); // TypeError "foo is not a function" 
+    bar(); // "this will run!" 
+    var foo = function () { // function expression assigned to local variable 'foo' 
+        alert("this won't run!"); 
+    } 
+    function bar() { // function declaration, given the name 'bar' 
+        alert("this will run!"); 
+    } 
+}
+test();
+```
+
+
+#Name resolution order（名称解析顺序）
+
+名称解析顺序有4步，一般来说，如果一个名称已经被定义了，它就不会被另一个具有同名称的属性所覆盖。这也就意味着，函数声明会比变量声明优先。并不是名称的赋值操作不会被执行，只是说声明部分被忽略了而已。有些例外：
+  - 原生变量arguments特立独行，包含了传递到函数中的参数。如果自定义以arguments为命名的参数，将会阻止原生arguments对象的创建。所以勿使用arguments为名称的参数。
+  - 胡乱使用this标识符会引起语法错误。
+  - 如果多个参数具有相同的命名，那么最后一个参数会优先于先前的，即时这个参数未定义。
+
+
+#Named Function Expressions（函数命名表达式）
+
+你可以通过函数表达式给函数命名，语法上看起来像是函数声明，实则不是。
+spam(); // ReferenceError "spam is not defined" 
+
+#How to Code With This Knowledge（如何编码）
+
+切记，使用var表达式创建变量，在此强烈建议在代码块顶部使用一个var表达式来创建变量。然而，这么做的同时也导致很难对当前作用域下实际被声明的变量进行跟踪。我建议开发者使用JSLint来进行验证：
+/*jslint onevar: true [...] */ 
+function foo(a, b, c) { 
+    var x = 1, 
+        bar, 
+        baz = "something"; 
+} 
+
+
+
+
+
+
+
+
